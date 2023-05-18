@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/CartPage.dart';
 import 'package:flutter_application_1/Favorite.dart';
+import 'package:flutter_application_1/MyAccount.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'ProductCard.dart';
 
@@ -30,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           elevation: 0.1,
           backgroundColor: Colors.blue,
-          title: Text('ActiveShop'),
+          title: Text('Home'),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -49,7 +50,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 Icons.person,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyAccountPage()),
+                );
+              },
             ),
           ],
         ),
@@ -86,17 +92,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyAccountPage()),
+                  );
+                },
                 child: ListTile(
                   title: Text('My account'),
                   leading: Icon(Icons.person, color: Colors.blue[700]),
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: ListTile(
-                  title: Text('My orders'),
-                  leading: Icon(Icons.shopping_basket, color: Colors.blue[700]),
                 ),
               ),
               InkWell(
