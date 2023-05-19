@@ -70,27 +70,11 @@ class CartItem extends StatelessWidget {
                 SizedBox(
                   height: 8.0,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      'Quantity :',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.remove),
-                      onPressed: () {},
-                    ),
-                    Text(
-                      '$quantity',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.add),
-                      onPressed: () {},
-                    ),
-                  ],
+                Text(
+                  'Quantity: $quantity',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
                 ),
               ],
             ),
