@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/MyOrders.dart';
+import 'package:flutter_application_1/views/MyOrders.dart';
 
 class MyAccountPage extends StatelessWidget {
   @override

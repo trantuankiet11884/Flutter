@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/CartPage.dart';
-import 'package:flutter_application_1/Favorite.dart';
-import 'package:flutter_application_1/MyAccount.dart';
+import 'package:flutter_application_1/views/CartPage.dart';
+import 'package:flutter_application_1/views/Favorite.dart';
+import 'package:flutter_application_1/views/MyAccount.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'ProductCard.dart';
 

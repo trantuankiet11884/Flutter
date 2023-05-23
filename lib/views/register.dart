@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/homepage.dart';
-import 'package:flutter_application_1/register.dart';
+import 'package:flutter_application_1/views/homepage.dart';
 
-class LoginPage extends StatelessWidget {
+import 'login.dart';
+
+class RegisterPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -12,20 +15,19 @@ class LoginPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 80, 84, 87),
-              Color.fromARGB(255, 48, 53, 61)
-            ],
-          ),
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromARGB(255, 80, 84, 87),
+                Color.fromARGB(255, 48, 53, 61)
+              ]),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Login',
+              'Create Account',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 30,
@@ -70,13 +72,32 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: TextField(
+                controller: _confirmPasswordController,
+                obscureText: true,
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'Confirm Password',
+                  hintStyle: TextStyle(color: Colors.white70),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
             SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
+                    MaterialPageRoute(builder: (context) => LoginPage()));
               },
-              child: Text('LOG IN'),
+              child: Text('SIGN UP'),
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
                 onPrimary: Colors.blueGrey,
@@ -87,30 +108,25 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            TextButton(
-              onPressed: () {},
-              child: Text('Forgot password?',
-                  style: TextStyle(color: Colors.white)),
-            ),
-            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Don't have an account? ",
+                  'Already have an account? ',
                   style: TextStyle(color: Colors.white),
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegisterPage()));
+                    Navigator.pop(context);
                   },
-                  child: Text('Sign up',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold)),
-                ),
+                  child: Text(
+                    'Log in',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
               ],
             )
           ],
