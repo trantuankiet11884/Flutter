@@ -10,9 +10,12 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: LoginPage());
+    return MaterialApp(
+        theme: ThemeData(appBarTheme: AppBarTheme()),
+        debugShowCheckedModeBanner: false,
+        home: LoginPage());
   }
 }
