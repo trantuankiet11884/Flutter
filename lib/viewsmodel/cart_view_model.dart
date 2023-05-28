@@ -1,32 +1,21 @@
-import 'package:flutter/material.dart';
-import '../models/shoe.dart';
-import '../models/cart.dart';
+import 'package:flutter_application_1/models/cart.dart';
+import 'package:flutter_application_1/repository/cart_repo.dart';
 
-class CartViewModel with ChangeNotifier {
-  Cart _cart = Cart(shoes: [], userId: '');
+class CartViewModel {
+  final CartRepository _cartRepository;
 
-  Cart get cart => _cart;
+  CartViewModel(this._cartRepository);
 
-  void addToCart(Shoe shoe) {
-    _cart.addItem(shoe);
-    notifyListeners();
+  Future<List<Cart>> getCart(int userId) async {
+    List<Cart> cartItems = await _cartRepository.getCart(userId);
+    return cartItems;
   }
 
-  void removeFromCart(Shoe shoe) {
-    _cart.removeItem(shoe);
-    notifyListeners();
+  void addToCart(int userId, int productId, int quantity) {
+    _cartRepository.addToCart(userId, productId, quantity);
   }
 
-  double getTotalPrice() {
-    return _cart.getTotalPrice();
-  }
-
-  bool isEmpty() {
-    return _cart.items.isEmpty;
-  }
-
-  void clearCart() {
-    _cart.clear();
-    notifyListeners();
+  void removeFromCart(int userId, int productId) {
+    _cartRepository.removeFromCart(userId, productId);
   }
 }

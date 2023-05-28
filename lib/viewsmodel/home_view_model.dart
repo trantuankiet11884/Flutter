@@ -1,20 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter_application_1/models/product.dart';
+import 'package:flutter_application_1/repository/product_repo.dart';
 
-import '../models/cart.dart';
-import '../models/shoe.dart';
-import '../screens/shoe_list_screen.dart';
+class HomeViewModel {
+  final ProductRepository _productRepository;
 
-class HomeViewModel extends ChangeNotifier {
-  final ShoeList shoeList;
-  final Cart cart;
+  HomeViewModel(this._productRepository);
 
-  HomeViewModel({
-    required this.shoeList,
-    required this.cart,
-  });
-
-  void addToCart(Shoe shoe) {
-    cart.shoes.add(shoe);
-    notifyListeners();
+  Future<List<Product>> getProducts() async {
+    List<Product> products = await _productRepository.getProducts();
+    return products;
   }
 }
