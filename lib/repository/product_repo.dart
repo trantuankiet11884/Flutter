@@ -8,7 +8,7 @@ class ProductRepository {
 
   Future<List<Product>> getProducts() async {
     final db = await _databaseProvider.getDatabase();
-    final List<Map<String, dynamic>> maps = await db.query('Product');
+    final List<Map<String, dynamic>> maps = await db!.query('Product');
     List<Product> products = List.generate(maps.length, (i) {
       return Product(
         id: maps[i]['id'],
@@ -23,7 +23,7 @@ class ProductRepository {
 
   Future<Product?> getProduct(int productId) async {
     final db = await _databaseProvider.getDatabase();
-    final List<Map<String, dynamic>> maps = await db.query(
+    final List<Map<String, dynamic>> maps = await db!.query(
       'Product',
       where: 'id = ?',
       whereArgs: [productId],

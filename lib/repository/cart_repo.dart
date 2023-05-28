@@ -8,7 +8,7 @@ class CartRepository {
 
   Future<List<Cart>> getCart(int userId) async {
     final db = await _databaseProvider.getDatabase();
-    final List<Map<String, dynamic>> maps = await db.query(
+    final List<Map<String, dynamic>> maps = await db!.query(
       'Cart',
       where: 'user_id = ?',
       whereArgs: [userId],
@@ -26,7 +26,7 @@ class CartRepository {
 
   Future<void> addToCart(int userId, int productId, int quantity) async {
     final db = await _databaseProvider.getDatabase();
-    await db.insert(
+    await db!.insert(
       'Cart',
       {'user_id': userId, 'product_id': productId, 'quantity': quantity},
     );
@@ -34,7 +34,7 @@ class CartRepository {
 
   Future<void> removeFromCart(int userId, int productId) async {
     final db = await _databaseProvider.getDatabase();
-    await db.delete(
+    await db!.delete(
       'Cart',
       where: 'user_id = ? AND product_id = ?',
       whereArgs: [userId, productId],

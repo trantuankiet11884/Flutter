@@ -8,7 +8,7 @@ class OrderRepository {
 
   Future<int> placeOrder(int userId, double totalPrice) async {
     final db = await _databaseProvider.getDatabase();
-    int orderId = await db.insert(
+    int orderId = await db!.insert(
       'Order',
       {'user_id': userId, 'total_price': totalPrice, 'status': 'pending'},
     );
@@ -17,7 +17,7 @@ class OrderRepository {
 
   Future<Order?> getOrder(int orderId) async {
     final db = await _databaseProvider.getDatabase();
-    final List<Map<String, dynamic>> maps = await db.query(
+    final List<Map<String, dynamic>> maps = await db!.query(
       'Order',
       where: 'id = ?',
       whereArgs: [orderId],
