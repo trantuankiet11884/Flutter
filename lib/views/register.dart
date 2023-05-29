@@ -1,11 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/viewsmodel/register_view_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class RegisterPage extends StatelessWidget {
-  late RegisterViewModel _registerViewModel;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+
+  Future<void> _registerUser(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      try {
+        final UserCredential userCredential =
+            await _auth.createUserWithEmailAndPassword(
+          email: _formKey.currentState!.fields['email']!.value.toString(),
+          password: _formKey.currentState!.fields['password']!.value.toString(),
+        );
+        // Đăng ký thành công, thực hiện hành động tiếp theo (ví dụ: chuyển trang)
+        print('User registered: ${userCredential.user!.email}');
+      } catch (e) {
+        // Xử lý lỗi đăng ký
+        print('Registration error: $e');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +38,6 @@ class RegisterPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Create an Account',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 32.0),
               FormBuilderTextField(
                 name: 'email',
                 decoration: InputDecoration(
@@ -53,33 +63,8 @@ class RegisterPage extends StatelessWidget {
                 ]),
               ),
               SizedBox(height: 16.0),
-              FormBuilderTextField(
-                name: 'confirmPassword',
-                decoration: InputDecoration(
-                  labelText: 'Confirm Password',
-                  border: OutlineInputBorder(),
-                ),
-                obscureText: true,
-                validator: (value) {
-                  final password =
-                      _formKey.currentState?.fields['password']!.value;
-                  if (value != password) {
-                    return 'Passwords do not match';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    final formData = _formKey.currentState!.value;
-                    final name = formData['name'];
-                    final email = formData['email'];
-                    final password = formData['password'];
-                    _registerViewModel.register(name, email, password);
-                  }
-                },
+                onPressed: () => _registerUser(context),
                 child: Text('Register'),
               ),
             ],
