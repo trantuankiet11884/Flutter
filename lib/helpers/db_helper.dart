@@ -12,7 +12,6 @@ class DatabaseProvider {
       path,
       version: 1,
       onCreate: (Database db, int version) async {
-        // Create tables
         await db.execute('''
           CREATE TABLE User (
             id INTEGER PRIMARY KEY,
@@ -53,7 +52,7 @@ class DatabaseProvider {
     );
   }
 
-  Future<Database> getDatabase() async {
+  Future<Database?> getDatabase() async {
     if (_database == null) {
       await initializeDatabase();
     }

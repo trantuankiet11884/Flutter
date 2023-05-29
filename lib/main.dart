@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/views/PaymentPage.dart';
-import 'package:flutter_application_1/views/homepage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/views/login.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(appBarTheme: AppBarTheme()),
-        debugShowCheckedModeBanner: false,
-        home: LoginPage());
+      title: 'Ecommerce',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: LoginPage(),
+    );
   }
 }

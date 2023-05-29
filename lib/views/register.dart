@@ -1,137 +1,91 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_application_1/views/homepage.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/viewsmodel/register_view_model.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
-// import 'login.dart';
+class RegisterPage extends StatelessWidget {
+  late RegisterViewModel _registerViewModel;
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
 
-// class RegisterPage extends StatelessWidget {
-//   final TextEditingController _emailController = TextEditingController();
-//   final TextEditingController _passwordController = TextEditingController();
-//   final TextEditingController _confirmPasswordController =
-//       TextEditingController();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Container(
-//         decoration: BoxDecoration(
-//           gradient: LinearGradient(
-//               begin: Alignment.topCenter,
-//               end: Alignment.bottomCenter,
-//               colors: [
-//                 Color.fromARGB(255, 80, 84, 87),
-//                 Color.fromARGB(255, 48, 53, 61)
-//               ]),
-//         ),
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           children: [
-//             Text(
-//               'Create Account',
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 fontSize: 30,
-//                 fontWeight: FontWeight.bold,
-//                 letterSpacing: 2,
-//               ),
-//             ),
-//             SizedBox(height: 30),
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 30),
-//               child: TextField(
-//                 controller: _emailController,
-//                 style: TextStyle(color: Colors.white),
-//                 decoration: InputDecoration(
-//                   hintText: 'Email',
-//                   hintStyle: TextStyle(color: Colors.white70),
-//                   enabledBorder: UnderlineInputBorder(
-//                     borderSide: BorderSide(color: Colors.white),
-//                   ),
-//                   focusedBorder: UnderlineInputBorder(
-//                     borderSide: BorderSide(color: Colors.white),
-//                   ),
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 30),
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 30),
-//               child: TextField(
-//                 controller: _passwordController,
-//                 obscureText: true,
-//                 style: TextStyle(color: Colors.white),
-//                 decoration: InputDecoration(
-//                   hintText: 'Password',
-//                   hintStyle: TextStyle(color: Colors.white70),
-//                   enabledBorder: UnderlineInputBorder(
-//                     borderSide: BorderSide(color: Colors.white),
-//                   ),
-//                   focusedBorder: UnderlineInputBorder(
-//                     borderSide: BorderSide(color: Colors.white),
-//                   ),
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 30),
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 30),
-//               child: TextField(
-//                 controller: _confirmPasswordController,
-//                 obscureText: true,
-//                 style: TextStyle(color: Colors.white),
-//                 decoration: InputDecoration(
-//                   hintText: 'Confirm Password',
-//                   hintStyle: TextStyle(color: Colors.white70),
-//                   enabledBorder: UnderlineInputBorder(
-//                     borderSide: BorderSide(color: Colors.white),
-//                   ),
-//                   focusedBorder: UnderlineInputBorder(
-//                     borderSide: BorderSide(color: Colors.white),
-//                   ),
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 50),
-//             ElevatedButton(
-//               onPressed: () {
-//                 Navigator.push(context,
-//                     MaterialPageRoute(builder: (context) => LoginPage()));
-//               },
-//               child: Text('SIGN UP'),
-//               style: ElevatedButton.styleFrom(
-//                 primary: Colors.white,
-//                 onPrimary: Colors.blueGrey,
-//                 shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(30),
-//                 ),
-//                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-//               ),
-//             ),
-//             SizedBox(height: 20),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 Text(
-//                   'Already have an account? ',
-//                   style: TextStyle(color: Colors.white),
-//                 ),
-//                 TextButton(
-//                   onPressed: () {
-//                     Navigator.pop(context);
-//                   },
-//                   child: Text(
-//                     'Log in',
-//                     style: TextStyle(
-//                       color: Colors.white,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                 )
-//               ],
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Register'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: FormBuilder(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Create an Account',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 32.0),
+              FormBuilderTextField(
+                name: 'email',
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(context),
+                  FormBuilderValidators.email(context),
+                ]),
+              ),
+              SizedBox(height: 16.0),
+              FormBuilderTextField(
+                name: 'password',
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(context),
+                  FormBuilderValidators.minLength(context, 6),
+                ]),
+              ),
+              SizedBox(height: 16.0),
+              FormBuilderTextField(
+                name: 'confirmPassword',
+                decoration: InputDecoration(
+                  labelText: 'Confirm Password',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+                validator: (value) {
+                  final password =
+                      _formKey.currentState?.fields['password']!.value;
+                  if (value != password) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    final formData = _formKey.currentState!.value;
+                    final name = formData['name'];
+                    final email = formData['email'];
+                    final password = formData['password'];
+                    _registerViewModel.register(name, email, password);
+                  }
+                },
+                child: Text('Register'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
