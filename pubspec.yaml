@@ -40,12 +40,15 @@ dependencies:
   scoped_model: ^2.0.0-nullsafety.0
   sqflite: ^2.0.2
   provider: ^6.0.5
-  firebase_core: ^2.13.0
-  firebase_auth: ^4.6.1
   flutter_svg: ^0.22.0
   flutter_form_builder: ^8.0.0
   form_builder_validators: ^7.6.1
   shared_preferences: ^2.0.13
+  badges: ^2.0.2
+  carousel_slider: ^4.1.1
+  dotted_border: ^2.0.0
+  file_picker: ^4.5.1
+  cloudinary_public: ^0.11.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

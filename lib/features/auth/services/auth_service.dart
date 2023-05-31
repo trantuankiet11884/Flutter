@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/common/widgets/bottom_bar.dart';
 import 'package:flutter_application_1/constants/error.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
 import 'package:flutter_application_1/constants/utils.dart';
@@ -11,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   // sign up user
-  void signUpUser({
+  Future<void> signUpUser({
     required BuildContext context,
     required String email,
     required String password,
@@ -30,7 +31,7 @@ class AuthService {
 
       http.Response res = await http.post(
         Uri.parse('$uri/api/signup'),
-        body: user.toJson(),
+        body: jsonEncode(user.toJson()),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -52,7 +53,7 @@ class AuthService {
   }
 
   // sign in user
-  void signInUser({
+  Future<void> signInUser({
     required BuildContext context,
     required String email,
     required String password,
@@ -76,11 +77,11 @@ class AuthService {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           Provider.of<UserProvider>(context, listen: false).setUser(res.body);
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
-          // Navigator.pushNamedAndRemoveUntil(
-          //   context,
-          //   BottomBar.routeName,
-          //   (route) => false,
-          // );
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            BottomBar.routeName,
+            (route) => false,
+          );
         },
       );
     } catch (e) {
@@ -88,7 +89,7 @@ class AuthService {
     }
   }
 
-  void getUserData(
+  Future<void> getUserData(
     BuildContext context,
   ) async {
     try {
