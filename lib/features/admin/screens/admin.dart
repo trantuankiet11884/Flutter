@@ -20,7 +20,7 @@ class _AdminScreenState extends State<AdminScreen> {
     double bottomBarBorderWidth = 5;
 
     List<Widget> pages = [
-      const PostScreen(),
+      const PostsScreen(),
       const Center(
         child: Text('Cart'),
       ),

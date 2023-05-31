@@ -6,6 +6,7 @@ import 'package:flutter_application_1/features/admin/screens/admin.dart';
 import 'package:flutter_application_1/features/admin/screens/post.dart';
 import 'package:flutter_application_1/features/auth/screens/auth_screen.dart';
 import 'package:flutter_application_1/features/auth/services/auth_service.dart';
+import 'package:flutter_application_1/features/home/screens/home_screen.dart';
 import 'package:flutter_application_1/provider/user_provider.dart';
 import 'package:flutter_application_1/router.dart';
 import 'package:provider/provider.dart';
@@ -37,27 +38,26 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Ecommerce',
-        theme: ThemeData(
-          scaffoldBackgroundColor: GlobalVariables.backgroundColor,
-          colorScheme: const ColorScheme.light(
-            primary: GlobalVariables.secondaryColor,
-          ),
-          appBarTheme: const AppBarTheme(
-            elevation: 0,
-            iconTheme: IconThemeData(
-              color: Colors.black,
-            ),
+      debugShowCheckedModeBanner: false,
+      title: 'Ecommerce',
+      theme: ThemeData(
+        scaffoldBackgroundColor: GlobalVariables.backgroundColor,
+        colorScheme: const ColorScheme.light(
+          primary: GlobalVariables.secondaryColor,
+        ),
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          iconTheme: IconThemeData(
+            color: Colors.black,
           ),
         ),
-        onGenerateRoute: (settings) => generateRoute(settings),
-        home: PostsScreen()
-        // Provider.of<UserProvider>(context).user.token.isNotEmpty
-        //     ? Provider.of<UserProvider>(context).user.type == 'user'
-        //         ? const BottomBar()
-        //         : const AdminScreen()
-        //     : const AuthScreen(),
-        );
+      ),
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? Provider.of<UserProvider>(context).user.type == 'user'
+              ? const BottomBar()
+              : const AdminScreen()
+          : const AuthScreen(),
+    );
   }
 }
