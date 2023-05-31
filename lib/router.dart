@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/widgets/bottom_bar.dart';
-import 'package:flutter_application_1/features/address/screens/address.dart';
-import 'package:flutter_application_1/features/admin/screens/add_product.dart';
-import 'package:flutter_application_1/features/auth/screens/auth_screen.dart';
-import 'package:flutter_application_1/features/home/screens/category.dart';
-import 'package:flutter_application_1/features/home/screens/home_screen.dart';
-import 'package:flutter_application_1/features/product_details/screens/product_detail.dart';
-import 'package:flutter_application_1/features/search/screens/search.dart';
+import 'package:flutter_application_1/pages/address/screens/address.dart';
+import 'package:flutter_application_1/pages/admin/screens/add_product.dart';
+import 'package:flutter_application_1/pages/auth/screens/auth_screen.dart';
+import 'package:flutter_application_1/pages/home/screens/category.dart';
+import 'package:flutter_application_1/pages/home/screens/home_screen.dart';
+import 'package:flutter_application_1/pages/product_details/screens/product_detail.dart';
+import 'package:flutter_application_1/pages/search/screens/search.dart';
 import 'package:flutter_application_1/models/product.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {

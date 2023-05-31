@@ -59,7 +59,6 @@ userRouter.delete("/api/remove-from-cart/:id", auth, async (req, res) => {
   }
 });
 
-// save user address
 userRouter.post("/api/save-user-address", auth, async (req, res) => {
   try {
     const { address } = req.body;
@@ -72,7 +71,6 @@ userRouter.post("/api/save-user-address", auth, async (req, res) => {
   }
 });
 
-// order product
 userRouter.post("/api/order", auth, async (req, res) => {
   try {
     const { cart, totalPrice, address } = req.body;

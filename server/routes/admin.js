@@ -4,7 +4,6 @@ const admin = require("../middlewares/admin");
 const { Product } = require("../models/product");
 const Order = require("../models/order");
 
-// Add product
 adminRouter.post("/admin/add-product", admin, async (req, res) => {
   try {
     const { name, description, images, quantity, price, category } = req.body;
@@ -23,7 +22,6 @@ adminRouter.post("/admin/add-product", admin, async (req, res) => {
   }
 });
 
-// Get all your products
 adminRouter.get("/admin/get-product", admin, async (req, res) => {
   try {
     const products = await Product.find({});
@@ -33,7 +31,6 @@ adminRouter.get("/admin/get-product", admin, async (req, res) => {
   }
 });
 
-// Delete the product
 adminRouter.post("/admin/delete-product", admin, async (req, res) => {
   try {
     const { id } = req.body;

@@ -1,42 +1,71 @@
-import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
 import 'package:flutter_application_1/pages/account/screens/account_screen.dart';
-import 'package:flutter_application_1/pages/cart/screens/cart.dart';
+import 'package:flutter_application_1/pages/admin/screens/post.dart';
 import 'package:flutter_application_1/pages/home/screens/home_screen.dart';
-import 'package:flutter_application_1/provider/user_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:badges/badges.dart' as badges;
 
-class BottomBar extends StatefulWidget {
-  static const String routeName = '/actual-home';
-  const BottomBar({Key? key}) : super(key: key);
+class AdminScreen extends StatefulWidget {
+  const AdminScreen({super.key});
 
   @override
-  State<BottomBar> createState() => _BottomBarState();
+  State<AdminScreen> createState() => _AdminScreenState();
 }
 
-class _BottomBarState extends State<BottomBar> {
-  int _page = 0;
-  double bottomBarWidth = 42;
-  double bottomBarBorderWidth = 5;
-
-  List<Widget> pages = [
-    const HomeScreen(),
-    const AccountScreen(),
-    const CartScreen(),
-  ];
-
-  void updatePage(int page) {
-    setState(() {
-      _page = page;
-    });
-  }
-
+class _AdminScreenState extends State<AdminScreen> {
   @override
   Widget build(BuildContext context) {
-    final userCartLen = context.watch<UserProvider>().user.cart.length;
+    int _page = 0;
+    double bottomBarWidth = 42;
+    double bottomBarBorderWidth = 5;
+
+    List<Widget> pages = [
+      const PostsScreen(),
+      const Center(
+        child: Text('Cart'),
+      ),
+      const Center(
+        child: Text('Anylytics'),
+      )
+    ];
+
+    void updatePage(int page) {
+      setState(() {
+        _page = page;
+      });
+    }
 
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(50),
+        child: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: GlobalVariables.appBarGradient,
+            ),
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                alignment: Alignment.topLeft,
+                child: Image.asset(
+                  'assets/images/facebook_logo.png',
+                  width: 120,
+                  height: 45,
+                  color: Colors.black,
+                ),
+              ),
+              const Text(
+                'Admin',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
       body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _page,
@@ -79,7 +108,7 @@ class _BottomBarState extends State<BottomBar> {
                 ),
               ),
               child: const Icon(
-                Icons.person_outline_outlined,
+                Icons.all_inbox_outlined,
               ),
             ),
             label: '',
