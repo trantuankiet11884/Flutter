@@ -8,7 +8,6 @@ import 'package:flutter_application_1/models/user.dart';
 import 'package:flutter_application_1/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:dio/dio.dart';
 
 class CartServices {
   void removeFromCart({
