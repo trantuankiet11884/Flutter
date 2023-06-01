@@ -71,7 +71,7 @@ class AdminServices {
     List<Product> productList = [];
     try {
       http.Response res =
-          await http.get(Uri.parse('$url/admin/get-products'), headers: {
+          await http.get(Uri.parse('$url/admin/get-product'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'x-auth-token': userProvider.user.token,
       });

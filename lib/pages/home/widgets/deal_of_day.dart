@@ -61,7 +61,7 @@ class _DealOfDayState extends State<DealOfDay> {
                       padding: const EdgeInsets.only(left: 15),
                       alignment: Alignment.topLeft,
                       child: const Text(
-                        '\$100',
+                        '\$500',
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
@@ -70,7 +70,7 @@ class _DealOfDayState extends State<DealOfDay> {
                       padding:
                           const EdgeInsets.only(left: 15, top: 5, right: 40),
                       child: const Text(
-                        'Rivaan',
+                        'Essentials',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),

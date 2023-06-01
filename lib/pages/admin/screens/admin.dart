@@ -1,40 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
 import 'package:flutter_application_1/pages/account/screens/account_screen.dart';
+import 'package:flutter_application_1/pages/admin/screens/order.dart';
 import 'package:flutter_application_1/pages/admin/screens/post.dart';
 import 'package:flutter_application_1/pages/home/screens/home_screen.dart';
+import 'package:flutter_application_1/pages/admin/screens/analtyics.dart';
 import 'package:badges/badges.dart' as badges;
 
 class AdminScreen extends StatefulWidget {
-  const AdminScreen({super.key});
+  const AdminScreen({Key? key}) : super(key: key);
 
   @override
   State<AdminScreen> createState() => _AdminScreenState();
 }
 
 class _AdminScreenState extends State<AdminScreen> {
+  int _page = 0;
+  double bottomBarWidth = 42;
+  double bottomBarBorderWidth = 5;
+
+  List<Widget> pages = [
+    const PostsScreen(),
+    const AnalyticsScreen(),
+    const OrdersScreen(),
+  ];
+
+  void updatePage(int page) {
+    setState(() {
+      _page = page;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    int _page = 0;
-    double bottomBarWidth = 42;
-    double bottomBarBorderWidth = 5;
-
-    List<Widget> pages = [
-      const PostsScreen(),
-      const Center(
-        child: Text('Cart'),
-      ),
-      const Center(
-        child: Text('Anylytics'),
-      )
-    ];
-
-    void updatePage(int page) {
-      setState(() {
-        _page = page;
-      });
-    }
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
@@ -47,18 +45,19 @@ class _AdminScreenState extends State<AdminScreen> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                alignment: Alignment.topLeft,
-                child: Image.asset(
-                  'assets/images/facebook_logo.png',
-                  width: 120,
-                  height: 45,
-                  color: Colors.black,
-                ),
-              ),
+              // Container(
+              //   alignment: Alignment.topLeft,
+              //   child: Image.asset(
+              //     'assets/images/google_logo.png',
+              //     width: 120,
+              //     height: 45,
+              //     color: Colors.black,
+              //   ),
+              // ),
               const Text(
                 'Admin',
                 style: TextStyle(
+                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               )
@@ -75,6 +74,7 @@ class _AdminScreenState extends State<AdminScreen> {
         iconSize: 28,
         onTap: updatePage,
         items: [
+          // POSTS
           BottomNavigationBarItem(
             icon: Container(
               width: bottomBarWidth,
@@ -94,6 +94,7 @@ class _AdminScreenState extends State<AdminScreen> {
             ),
             label: '',
           ),
+          // ANALYTICS
           BottomNavigationBarItem(
             icon: Container(
               width: bottomBarWidth,
@@ -108,33 +109,29 @@ class _AdminScreenState extends State<AdminScreen> {
                 ),
               ),
               child: const Icon(
-                Icons.all_inbox_outlined,
+                Icons.analytics_outlined,
               ),
             ),
             label: '',
           ),
+          // ORDERS
           BottomNavigationBarItem(
             icon: Container(
-                width: bottomBarWidth,
-                decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(
-                      color: _page == 2
-                          ? GlobalVariables.selectedNavBarColor
-                          : GlobalVariables.backgroundColor,
-                      width: bottomBarBorderWidth,
-                    ),
+              width: bottomBarWidth,
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: _page == 2
+                        ? GlobalVariables.selectedNavBarColor
+                        : GlobalVariables.backgroundColor,
+                    width: bottomBarBorderWidth,
                   ),
                 ),
-                child: badges.Badge(
-                  elevation: 0,
-                  badgeContent: Text(
-                    '3',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                  badgeColor: Colors.white,
-                  child: Icon(Icons.shopping_cart_outlined),
-                )),
+              ),
+              child: const Icon(
+                Icons.all_inbox_outlined,
+              ),
+            ),
             label: '',
           ),
         ],
