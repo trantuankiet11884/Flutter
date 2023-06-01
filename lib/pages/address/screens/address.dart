@@ -194,7 +194,7 @@ class _AddressScreenState extends State<AddressScreen> {
               const SizedBox(height: 10),
               GooglePayButton(
                 onPressed: () => payPressed(address),
-                paymentConfigurationAsset: 'googlepay.json',
+                paymentConfigurationAsset: 'gpay.json',
                 onPaymentResult: onGooglePayResult,
                 paymentItems: paymentItems,
                 height: 50,

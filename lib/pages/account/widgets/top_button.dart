@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/account/services/account_sv.dart';
 import 'package:flutter_application_1/pages/account/widgets/account_button.dart';
 
 class TopButtons extends StatelessWidget {
@@ -25,7 +26,7 @@ class TopButtons extends StatelessWidget {
           children: [
             AccountButton(
               text: 'Log Out',
-              onTap: () {},
+              onTap: () => AccountServices().logOut(context),
             ),
             AccountButton(
               text: 'Your Wish List',
