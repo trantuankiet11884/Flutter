@@ -1,17 +1,18 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
+
 import 'package:flutter_application_1/common/widgets/bottom_bar.dart';
 import 'package:flutter_application_1/constants/error.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
 import 'package:flutter_application_1/constants/utils.dart';
 import 'package:flutter_application_1/models/user.dart';
 import 'package:flutter_application_1/provider/user_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  Future<void> signUpUser({
+  void signUpUser({
     required BuildContext context,
     required String email,
     required String password,
@@ -19,18 +20,19 @@ class AuthService {
   }) async {
     try {
       User user = User(
-          id: '',
-          name: name,
-          password: password,
-          email: email,
-          address: '',
-          type: '',
-          token: '',
-          cart: []);
+        id: '',
+        name: name,
+        password: password,
+        email: email,
+        address: '',
+        type: '',
+        token: '',
+        cart: [],
+      );
 
       http.Response res = await http.post(
-        Uri.parse('$uri/api/signup'),
-        body: jsonEncode(user.toJson()),
+        Uri.parse('$url/api/signup'),
+        body: user.toJson(),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -42,7 +44,7 @@ class AuthService {
         onSuccess: () {
           showSnackBar(
             context,
-            'Account created! Login with the same credentials!',
+            'Account created!',
           );
         },
       );
@@ -51,14 +53,14 @@ class AuthService {
     }
   }
 
-  Future<void> signInUser({
+  void signInUser({
     required BuildContext context,
     required String email,
     required String password,
   }) async {
     try {
       http.Response res = await http.post(
-        Uri.parse('$uri/api/signin'),
+        Uri.parse('$url/api/signin'),
         body: jsonEncode({
           'email': email,
           'password': password,
@@ -67,7 +69,6 @@ class AuthService {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-
       httpErrorHandle(
         response: res,
         context: context,
@@ -87,7 +88,7 @@ class AuthService {
     }
   }
 
-  Future<void> getUserData(
+  void getUserData(
     BuildContext context,
   ) async {
     try {
@@ -99,7 +100,7 @@ class AuthService {
       }
 
       var tokenRes = await http.post(
-        Uri.parse('$uri/tokenIsValid'),
+        Uri.parse('$url/tokenIsValid'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'x-auth-token': token!
@@ -110,7 +111,7 @@ class AuthService {
 
       if (response == true) {
         http.Response userRes = await http.get(
-          Uri.parse('$uri/'),
+          Uri.parse('$url/'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'x-auth-token': token

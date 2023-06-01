@@ -18,7 +18,7 @@ class AccountServices {
     List<Order> orderList = [];
     try {
       http.Response res =
-          await http.get(Uri.parse('$uri/api/orders/me'), headers: {
+          await http.get(Uri.parse('$url/api/orders/me'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'x-auth-token': userProvider.user.token,
       });

@@ -18,7 +18,7 @@ class AddressServices {
 
     try {
       http.Response res = await http.post(
-        Uri.parse('$uri/api/save-user-address'),
+        Uri.parse('$url/api/save-user-address'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'x-auth-token': userProvider.user.token,
@@ -44,7 +44,6 @@ class AddressServices {
     }
   }
 
-  // get all the products
   void placeOrder({
     required BuildContext context,
     required String address,
@@ -53,7 +52,7 @@ class AddressServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     try {
-      http.Response res = await http.post(Uri.parse('$uri/api/order'),
+      http.Response res = await http.post(Uri.parse('$url/api/order'),
           headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             'x-auth-token': userProvider.user.token,
@@ -89,7 +88,7 @@ class AddressServices {
 
     try {
       http.Response res = await http.post(
-        Uri.parse('$uri/admin/delete-product'),
+        Uri.parse('$url/admin/delete-product'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'x-auth-token': userProvider.user.token,

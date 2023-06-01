@@ -17,7 +17,7 @@ class HomeServices {
     List<Product> productList = [];
     try {
       http.Response res = await http
-          .get(Uri.parse('$uri/api/products?category=$category'), headers: {
+          .get(Uri.parse('$url/api/products?category=$category'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'x-auth-token': userProvider.user.token,
       });
@@ -58,7 +58,7 @@ class HomeServices {
 
     try {
       http.Response res =
-          await http.get(Uri.parse('$uri/api/deal-of-day'), headers: {
+          await http.get(Uri.parse('$url/api/deal-of-day'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'x-auth-token': userProvider.user.token,
       });
