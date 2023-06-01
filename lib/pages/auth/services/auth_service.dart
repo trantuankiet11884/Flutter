@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:flutter_application_1/common/widgets/bottom_bar.dart';
 import 'package:flutter_application_1/constants/error.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dio/dio.dart';
 
 class AuthService {
   void signUpUser({
@@ -83,7 +84,7 @@ class AuthService {
           );
         },
       );
-    } catch (e) {
+    } on SocketException catch (e) {
       showSnackBar(context, e.toString());
     }
   }

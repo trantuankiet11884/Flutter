@@ -7,6 +7,7 @@ import 'package:flutter_application_1/models/product.dart';
 import 'package:flutter_application_1/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 class HomeServices {
   Future<List<Product>> fetchCategoryProducts({
