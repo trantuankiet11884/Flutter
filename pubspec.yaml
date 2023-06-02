@@ -38,14 +38,21 @@ dependencies:
   http: ^0.13.6
   path: ^1.8.1
   scoped_model: ^2.0.0-nullsafety.0
-  sqflite: ^2.0.2
   provider: ^6.0.5
-  firebase_core: ^2.13.0
-  firebase_auth: ^4.6.1
-  flutter_svg: ^0.22.0
+  flutter_svg: ^1.0.0
   flutter_form_builder: ^8.0.0
   form_builder_validators: ^7.6.1
   shared_preferences: ^2.0.13
+  badges: ^2.0.2
+  carousel_slider: ^4.1.1
+  dotted_border: ^2.0.0
+  file_picker: ^4.5.1
+  cloudinary_public: ^0.21.0
+  flutter_rating_bar: ^4.0.0
+  pay: ^1.1.0
+  intl: ^0.17.0
+  charts_flutter: ^0.12.0
+  dio: ^5.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -70,7 +77,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-
+    - assets/applepay.json
+    - assets/googlepay.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
