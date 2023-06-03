@@ -100,7 +100,7 @@ class _BottomBarState extends State<BottomBar> {
                 child: badges.Badge(
                   elevation: 0,
                   badgeContent: Text(
-                    '3',
+                    '',
                     style: TextStyle(color: Colors.red),
                   ),
                   badgeColor: Colors.white,

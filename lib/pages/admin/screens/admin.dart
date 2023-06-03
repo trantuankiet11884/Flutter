@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
 import 'package:flutter_application_1/pages/account/screens/account_screen.dart';
+import 'package:flutter_application_1/pages/account/services/account_sv.dart';
+import 'package:flutter_application_1/pages/account/widgets/account_button.dart';
 import 'package:flutter_application_1/pages/admin/screens/order.dart';
 import 'package:flutter_application_1/pages/admin/screens/post.dart';
 import 'package:flutter_application_1/pages/home/screens/home_screen.dart';
@@ -45,22 +47,17 @@ class _AdminScreenState extends State<AdminScreen> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Container(
-              //   alignment: Alignment.topLeft,
-              //   child: Image.asset(
-              //     'assets/images/google_logo.png',
-              //     width: 120,
-              //     height: 45,
-              //     color: Colors.black,
-              //   ),
-              // ),
               const Text(
                 'Admin',
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
-              )
+              ),
+              AccountButton(
+                text: 'Log Out',
+                onTap: () => AccountServices().logOut(context),
+              ),
             ],
           ),
         ),
