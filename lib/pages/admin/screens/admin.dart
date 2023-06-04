@@ -6,7 +6,6 @@ import 'package:flutter_application_1/pages/account/widgets/account_button.dart'
 import 'package:flutter_application_1/pages/admin/screens/order.dart';
 import 'package:flutter_application_1/pages/admin/screens/post.dart';
 import 'package:flutter_application_1/pages/home/screens/home_screen.dart';
-import 'package:flutter_application_1/pages/admin/screens/analtyics.dart';
 import 'package:badges/badges.dart' as badges;
 
 class AdminScreen extends StatefulWidget {
@@ -23,7 +22,6 @@ class _AdminScreenState extends State<AdminScreen> {
 
   List<Widget> pages = [
     const PostsScreen(),
-    const AnalyticsScreen(),
     const OrdersScreen(),
   ];
 
@@ -92,25 +90,7 @@ class _AdminScreenState extends State<AdminScreen> {
             label: '',
           ),
           // ANALYTICS
-          BottomNavigationBarItem(
-            icon: Container(
-              width: bottomBarWidth,
-              decoration: BoxDecoration(
-                border: Border(
-                  top: BorderSide(
-                    color: _page == 1
-                        ? GlobalVariables.selectedNavBarColor
-                        : GlobalVariables.backgroundColor,
-                    width: bottomBarBorderWidth,
-                  ),
-                ),
-              ),
-              child: const Icon(
-                Icons.analytics_outlined,
-              ),
-            ),
-            label: '',
-          ),
+
           // ORDERS
           BottomNavigationBarItem(
             icon: Container(

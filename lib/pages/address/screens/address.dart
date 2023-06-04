@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/common/widgets/custom_button.dart';
 import 'package:flutter_application_1/common/widgets/custom_textfield.dart';
 import 'package:flutter_application_1/constants/global_variables.dart';
 import 'package:flutter_application_1/constants/utils.dart';
@@ -151,10 +152,10 @@ class _AddressScreenState extends State<AddressScreen> {
                   ],
                 ),
               ),
-              ElevatedButton(
-                onPressed: () => payPressed(address),
-                child: Text('Buy Now'),
-              ),
+              CustomButton(
+                text: 'Buy now',
+                onTap: () => payPressed(address),
+              )
             ],
           ),
         ),
