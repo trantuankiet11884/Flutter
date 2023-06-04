@@ -89,7 +89,6 @@ class _AdminScreenState extends State<AdminScreen> {
             ),
             label: '',
           ),
-          // ANALYTICS
 
           // ORDERS
           BottomNavigationBarItem(
