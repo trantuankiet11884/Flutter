@@ -79,7 +79,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ),
                 leading: Radio(
-                  activeColor: GlobalVariables.secondaryColor,
+                  activeColor: GlobalVariables.selectedNavBarColor,
                   value: Auth.signup,
                   groupValue: _auth,
                   onChanged: (Auth? val) {
@@ -135,7 +135,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ),
                 leading: Radio(
-                  activeColor: GlobalVariables.secondaryColor,
+                  activeColor: GlobalVariables.selectedNavBarColor,
                   value: Auth.signin,
                   groupValue: _auth,
                   onChanged: (Auth? val) {

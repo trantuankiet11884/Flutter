@@ -22,15 +22,6 @@ class AccountScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                alignment: Alignment.topLeft,
-                child: Image.asset(
-                  'assets/images/facebook_logo.png',
-                  width: 120,
-                  height: 45,
-                  color: Colors.black,
-                ),
-              ),
-              Container(
                 padding: const EdgeInsets.only(left: 15, right: 15),
                 child: Row(
                   children: const [

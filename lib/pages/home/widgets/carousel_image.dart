@@ -20,6 +20,7 @@ class CarouselImage extends StatelessWidget {
         },
       ).toList(),
       options: CarouselOptions(
+        autoPlay: true,
         viewportFraction: 1,
         height: 200,
       ),

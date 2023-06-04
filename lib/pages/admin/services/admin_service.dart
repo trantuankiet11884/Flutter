@@ -71,7 +71,7 @@ class AdminServices {
     List<Product> productList = [];
     try {
       http.Response res =
-          await http.get(Uri.parse('$url/admin/get-products'), headers: {
+          await http.get(Uri.parse('$url/admin/get-product'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'x-auth-token': userProvider.user.token,
       });
@@ -188,40 +188,5 @@ class AdminServices {
     } catch (e) {
       showSnackBar(context, e.toString());
     }
-  }
-
-  Future<Map<String, dynamic>> getEarnings(BuildContext context) async {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    List<Sales> sales = [];
-    int totalEarning = 0;
-    try {
-      http.Response res =
-          await http.get(Uri.parse('$url/admin/analytics'), headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'x-auth-token': userProvider.user.token,
-      });
-
-      httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () {
-          var response = jsonDecode(res.body);
-          totalEarning = response['total'];
-          sales = [
-            Sales('Mobiles', response['mobiles']),
-            Sales('Essentials', response['essentials']),
-            Sales('Books', response['books']),
-            Sales('Appliances', response['appliances']),
-            Sales('Fashion', response['fashion']),
-          ];
-        },
-      );
-    } catch (e) {
-      showSnackBar(context, e.toString());
-    }
-    return {
-      'sales': sales,
-      'totalEarnings': totalEarning,
-    };
   }
 }
